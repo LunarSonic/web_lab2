@@ -1,0 +1,7 @@
+services:
+  wildfly:
+    build: .
+    container_name: web_lab2_wildfly
+    ports:
+      - "9001:8080"
+

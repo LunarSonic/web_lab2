@@ -1,0 +1,27 @@
+plugins {
+  id 'java'
+  id 'war'
+}
+
+group 'web.lunarsonic'
+version '1.0-SNAPSHOT'
+
+repositories {
+  mavenCentral()
+}
+
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+tasks.withType(JavaCompile).configureEach {
+  options.encoding = 'UTF-8'
+}
+
+dependencies {
+  compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
+  implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+war {
+}
+
