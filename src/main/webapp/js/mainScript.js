@@ -40,11 +40,9 @@ function handleClick(event) {
         showMessage(errorField, "Необходимо сначала выбрать радиус R!")
     }
     const r = rRadio.value
-    // расчёт координат в px
     const rect = canvas.getBoundingClientRect()
     const x_px = event.clientX - rect.left
     const y_px = event.clientY - rect.top
-
     const realX = (x_px - center) / scale
     const realY = -((y_px - center) / scale)
     const yRounded = Math.round(realY)
@@ -99,6 +97,7 @@ function validateForm(event) {
     }
     return true
 }
+mainForm.addEventListener('submit', validateForm)
 
 
 const validateY = function() {

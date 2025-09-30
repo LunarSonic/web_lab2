@@ -128,14 +128,12 @@ function drawPointOnCoordinatePlane(ctx, x, y, wasThereHit) {
     let radius
     if (wasThereHit) {
         ctx.fillStyle = '#C0E6B1'
-        radius = 3.2
     } else {
         ctx.fillStyle = '#D14545'
-        radius = 4.2
     }
     ctx.beginPath()
     let [newX, newY] = convertIntoCanvasCoordinates(x, y)
-    ctx.arc(newX, newY, radius, 0, 2*Math.PI)
+    ctx.arc(newX, newY, 3, 0, 2*Math.PI)
     ctx.closePath()
     ctx.fill()
 }

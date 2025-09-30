@@ -20,7 +20,7 @@
         <h1>Веб-программирование. Лабораторная работа №2. Вариант 63164</h1>
         <div id="container_with_image">
             <h2>Абдуллаева София Улугбековна. P3208</h2>
-            <a href="https://github.com/LunarSonic/web_lab1" target="_blank">
+            <a href="https://github.com/LunarSonic/web_lab2" target="_blank">
                 <img id="githubIcon" src="images/github.svg" alt="">
             </a>
         </div>
@@ -31,72 +31,73 @@
     ResultHistory historyBean = (ResultHistory) request.getServletContext().getAttribute("resultHistory");
     List<Result> history = (historyBean != null) ? historyBean.getHistory() : null;
     String currentR = (newResult != null) ? String.format(Locale.US, "%.1f", newResult.r()) : null; %>
-
     <div id="canvas_container" data-current-r = "<%= currentR%>" data-history-json = '<%= historyJson%>'>
-        <div id="current_result_details">
-            <h3 class="result_heading">Детали текущей проверки</h3>
-            <% if (newResult != null) { %>
-            <table>
-                <tr>
-                    <th>X</th>
-                    <th>Y</th>
-                    <th>R</th>
-                    <th>Попали ли вы?</th>
-                    <th>Текущая дата</th>
-                    <th>Время работы скрипта (нс)</th>
-                </tr>
-                <tr>
-                    <td><%= newResult.x() %></td>
-                    <td><%= newResult.y() %></td>
-                    <td><%= newResult.r() %></td>
-                    <td><%= newResult.hit() ? "Да" : "Нет" %></td>
-                    <td><%= newResult.serverTime() %></td>
-                    <td><%= newResult.scriptTime() %></td>
-                </tr>
-            </table>
+        <div id="left_column">
+            <div id="current_result_details">
+                <h3 id="result_header">Детали текущей проверки</h3>
+                <% if (newResult != null) { %>
+                <table>
+                    <tr>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>R</th>
+                        <th>Попали ли вы?</th>
+                        <th>Текущая дата</th>
+                        <th>Время работы скрипта (нс)</th>
+                    </tr>
+                    <tr>
+                        <td><%= newResult.x() %></td>
+                        <td><%= newResult.y() %></td>
+                        <td><%= newResult.r() %></td>
+                        <td><%= newResult.hit() ? "Да" : "Нет" %></td>
+                        <td><%= newResult.serverTime() %></td>
+                        <td><%= newResult.scriptTime() %></td>
+                    </tr>
+                </table>
+                <div id="navigation">
+                    <a href="index.jsp">Отправить новый запрос</a>
+                </div>
+                <% } else { %>
+                <p class="error">Не удалось получить результаты проверки</p>
+                <% } %>
+            </div>
+            <h3 id="history_header">История проверок</h3>
+            <div id="table_container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>R</th>
+                        <th>Попали ли вы?</th>
+                        <th>Текущая дата</th>
+                        <th>Время работы скрипта (нс)</th>
+                    </tr>
+                    </thead>
+                    <tbody id="body_for_table">
+                    <%
+                        if (history != null) {
+                            for (Result res : history) {
+                    %>
+                    <tr>
+                        <td><%= res.x() %></td>
+                        <td><%= res.y() %></td>
+                        <td><%= res.r() %></td>
+                        <td><%= res.hit() ? "Да" : "Нет" %></td>
+                        <td><%= res.serverTime() %></td>
+                        <td><%= res.scriptTime() %></td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div id="main_canvas">
             <canvas id="coordinate_plane" width="400" height="400"></canvas>
         </div>
-    </div>
-    <h3 class="result_heading">История проверок</h3>
-        <div id="table_container">
-            <table>
-                <thead>
-                <tr>
-                    <th>X</th>
-                    <th>Y</th>
-                    <th>R</th>
-                    <th>Попали ли вы?</th>
-                    <th>Текущая дата</th>
-                    <th>Время работы скрипта (нс)</th>
-                </tr>
-                </thead>
-                <tbody id="body_for_table">
-                <%
-                    if (history != null) {
-                        for (Result res : history) {
-                %>
-                <tr>
-                    <td><%= res.x() %></td>
-                    <td><%= res.y() %></td>
-                    <td><%= res.r() %></td>
-                    <td><%= res.hit() ? "Да" : "Нет" %></td>
-                    <td><%= res.serverTime() %></td>
-                    <td><%= res.scriptTime() %></td>
-                </tr>
-                <%
-                        }
-                    }
-                %>
-                </tbody>
-            </table>
-        </div>
-        <% } else { %>
-        <p class="error">Не удалось получить результаты проверки</p>
-        <% } %>
-
-        <a href="index.jsp">Перейти на прошлую страницу, чтобы отправить новый запрос</a>
     </div>
 </body>
 <script type="module" src="js/result.js"></script>

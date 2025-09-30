@@ -18,13 +18,13 @@
     <h1>Веб-программирование. Лабораторная работа №2. Вариант 63164</h1>
     <div id="container_with_image">
       <h2>Абдуллаева София Улугбековна. P3208</h2>
-      <a href="https://github.com/LunarSonic/web_lab1" target="_blank">
+      <a href="https://github.com/LunarSonic/web_lab2" target="_blank">
         <img id="githubIcon" src="images/github.svg" alt="">
       </a>
     </div>
   </header>
   <div id="canvas_container">
-    <form id="main_form" method="get" action="app" onsubmit="return validateForm()">
+    <form id="main_form" method="get" action="app">
       <div id="choice_of_x">
         <span class="label_name">Введите X:</span>
         <label><input type="text" id="x" name="x" placeholder="От -3 до 5"></label>
