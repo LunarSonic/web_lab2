@@ -41,6 +41,7 @@
         <label><input class="checkboxForY" type="checkbox" name="y" value="1">1</label>
         <label><input class="checkboxForY" type="checkbox" name="y" value="2">2</label>
         <label><input class="checkboxForY" type="checkbox" name="y" value="3">3</label>
+        <label><input type="hidden" id="yCanvas" name="yCanvasValue"></label>
         <div class="error" id="errorY"></div>
       </div>
       <div id="choice_of_r">
@@ -57,11 +58,6 @@
         <button id="clear_form_button" type="button">Очистить форму</button>
       </div>
       <div class="error" id="error"></div>
-    </form>
-    <form id="canvas_form" method="get" action="app" style="display:none;">
-      <input type="hidden" name="x" id="canvas_x">
-      <input type="hidden" name="y" id="canvas_y">
-      <input type="hidden" name="r" id="canvas_r">
     </form>
     <div id="main_canvas">
       <canvas id="coordinate_plane" width="400" height="400"></canvas>
