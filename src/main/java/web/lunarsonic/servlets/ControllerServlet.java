@@ -14,10 +14,11 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("Путь: " + request.getContextPath());
         String x = request.getParameter("x");
-        String y = request.getParameter("y");
+        String yCheckbox = request.getParameter("y");
+        String yCanvas = request.getParameter("yCanvasValue");
         String r = request.getParameter("r");
-        logger.info("Обработка запроса: x=" + x + "y=" + y + "r=" + r);
-        if (x != null && y != null && r != null) {
+        logger.info("Обработка запроса: x=" + x + "y=" + (yCheckbox != null ? yCheckbox : yCanvas) + "r=" + r);
+        if (x != null && (yCheckbox != null || yCanvas != null) && r != null) {
             request.getRequestDispatcher("/check").forward(request, response);
         } else {
             request.getRequestDispatcher("/index.jsp").forward(request, response);

@@ -2,10 +2,10 @@ package web.lunarsonic.core;
 
 public class HitCheck {
     private final float x;
-    private final int y;
+    private final float y;
     private final float r;
 
-    public HitCheck(float x, int y, float r) {
+    public HitCheck(float x, float y, float r) {
         this.x = x;
         this.y = y;
         this.r = r;
