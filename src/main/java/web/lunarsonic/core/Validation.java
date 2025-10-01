@@ -2,15 +2,12 @@ package web.lunarsonic.core;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Validation {
     private float x;
-    private int y;
+    private float y;
     private float r;
-    public static final Set<Integer> availableY = Set.of(-5, -4, -3, -2, -1, 0, 1, 2, 3);
-    public static final Set<Float> availableR = Set.of(1F, 1.5F, 2F, 2.5F, 3F);
-    public static final String floatPattern = "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$";
+    private final String floatPattern = "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$";
     private final List<String> errors = new ArrayList<>();
 
     public Validation() {}
@@ -32,29 +29,42 @@ public class Validation {
             return;
         }
         float parsedX = Float.parseFloat(xValue);
-        if (parsedX < -3 || parsedX > 5) {
-            errors.add("Координата Y должна быть от -3 до 5!");
+        if (parsedX <= -3 || parsedX >= 5) {
+            errors.add("Координата X должна быть в диапазоне (-3; 5)");
             return;
         }
         this.x = parsedX;
     }
 
     private void validateY(Map<String, String> coordinates) {
-        String yValue = coordinates.get("y");
-        if (yValue.trim().isEmpty()) {
+        String yValue = findFirstNotEmptyValue(coordinates.get("yCanvasValue"), coordinates.get("y"));
+        if (yValue == null) {
             errors.add("Координата Y отсутствует!");
             return;
         }
+        if (!yValue.matches(floatPattern)) {
+            errors.add("Координата Y должна быть числом с плавающей точкой!");
+            return;
+        }
         try {
-            int parsedY = Integer.parseInt(yValue);
-            if (!availableY.contains(parsedY)) {
-                errors.add("Координата Y должна быть от -5 до 3!");
+            float parsedY = Float.parseFloat(yValue);
+            if (parsedY < -5 || parsedY > 3) {
+                errors.add("Координата Y должна быть в диапазоне [-5; 3]");
                 return;
             }
             this.y = parsedY;
         } catch (NumberFormatException e) {
             errors.add("Координата Y должна быть числом!");
         }
+    }
+
+    private String findFirstNotEmptyValue(String... values) {
+        for (String value: values) {
+            if (value != null && !value.isEmpty()) {
+                return value;
+            }
+        }
+        return null;
     }
 
     private void validateR(Map<String, String> coordinates) {
@@ -68,7 +78,7 @@ public class Validation {
             return;
         }
         float parsedR = Float.parseFloat(rValue);
-        if (!availableR.contains(parsedR)) {
+        if (parsedR < 1 || parsedR > 3) {
             errors.add("Радиус R должен быть равен одному из значений: 1.0, 1.5, 2.0, 2.5, 3.0");
             return;
         }
@@ -87,7 +97,7 @@ public class Validation {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
