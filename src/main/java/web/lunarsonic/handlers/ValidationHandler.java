@@ -1,17 +1,15 @@
-package web.lunarsonic.utility;
+package web.lunarsonic.handlers;
 import jakarta.servlet.http.HttpServletRequest;
-import web.lunarsonic.core.HitCheck;
+import web.lunarsonic.abstractions.BaseHandler;
 import web.lunarsonic.core.Validation;
-import web.lunarsonic.models.*;
 import web.lunarsonic.exceptions.ValidationException;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import web.lunarsonic.models.Point;
+import web.lunarsonic.models.ResultContext;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResultHandler {
-    private Point validate(HttpServletRequest request) {
+public class ValidationHandler extends BaseHandler {
+    private Point validateAndCreatePoint(HttpServletRequest request) {
         Map<String, String> coordinates = new HashMap<>();
         coordinates.put("x", request.getParameter("x"));
         coordinates.put("y", request.getParameter("y"));
@@ -28,14 +26,10 @@ public class ResultHandler {
         return new Point(x, y, r);
     }
 
-    public Result handleResult(HttpServletRequest request) {
-        long start = System.nanoTime();
-        Point point = validate(request);
-        HitCheck hitCheck = new HitCheck(point.x(), point.y(), point.r());
-        boolean isHit = hitCheck.wasThereHit();
-        long scriptTime = System.nanoTime() - start;
-        ZonedDateTime currentTime = ZonedDateTime.now(ZoneId.of("Europe/Moscow"));
-        String serverTime = currentTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-        return new Result(point.x(), point.y(), point.r(), isHit, scriptTime, serverTime);
+    @Override
+    protected void process(ResultContext resultContext) {
+        HttpServletRequest request = resultContext.getRequest();
+        Point point = validateAndCreatePoint(request);
+        resultContext.setPointFromRequest(point);
     }
 }
