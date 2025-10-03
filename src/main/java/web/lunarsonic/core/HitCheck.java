@@ -16,7 +16,7 @@ public class HitCheck {
     }
 
     private boolean quarterWithTriangle() {
-        if (x <= 0 && y >= 0) {
+        if (x < 0 && y > 0) {
             return y <= x + r;
         }
         return false;
@@ -30,7 +30,7 @@ public class HitCheck {
     }
 
     private boolean quarterWithRectangle() {
-        if (x >= 0 && y >= 0) {
+        if (x > 0 && y > 0) {
             return (x <= r) && (y < r / 2);
         }
         return false;
