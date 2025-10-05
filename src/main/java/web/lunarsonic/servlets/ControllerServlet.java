@@ -12,7 +12,7 @@ public class ControllerServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.info("Путь: " + request.getContextPath());
+        logger.info("Путь запроса: " + request.getRequestURI());
         String x = request.getParameter("x");
         String yCheckbox = request.getParameter("y");
         String yCanvas = request.getParameter("yCanvasValue");
