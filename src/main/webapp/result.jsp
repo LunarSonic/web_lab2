@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Результаты проверки</title>
+    <link rel="icon" type="image/png" href="images/duck.PNG">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,12 +55,10 @@
                         <td><%= newResult.scriptTime() %></td>
                     </tr>
                 </table>
+                <% } %>
                 <div id="navigation">
                     <a href="index.jsp">Отправить новый запрос</a>
                 </div>
-                <% } else { %>
-                <p class="error">Не удалось получить результаты проверки</p>
-                <% } %>
             </div>
             <h3 id="history_header">История проверок</h3>
             <div id="table_container">

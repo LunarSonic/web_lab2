@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
         dom.xInput, dom.yCheckbox, dom.yValueForCanvas,
         dom.errorField, dom.errorX, dom.errorY, dom.errorR)
 
-    const formManager = new FormManager(
+    new FormManager(
         dom.mainForm, dom.clearFormButton, dom.rChoice,
         dom.yCheckbox, dom.yValueForCanvas, redraw, validation)
 
-    const canvasHandler = new CanvasHandler(
+    new CanvasHandler(
         dom.canvas, dom.xInput, dom.yValueForCanvas, dom.yCheckbox,
         dom.mainForm, dom.errorField, validation, center, scale)
     redraw()

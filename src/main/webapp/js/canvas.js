@@ -7,12 +7,12 @@ const center = canvasSize / 2
 const scale = canvasSize / gridPoints
 
 function initCanvas() {
-    const canvas = document.getElementById('coordinate_plane');
+    const canvas = document.getElementById('coordinate_plane')
     const ctx = canvas.getContext('2d')
-    ctx.font = '13px Arial';
+    ctx.font = '13px Arial'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    return ctx;
+    return ctx
 }
 
 function drawAxisLabels(ctx, r) {
@@ -81,7 +81,7 @@ function drawCoordinatePlane(ctx, r) {
     ctx.strokeStyle = mainColor
     drawAxeOnCoordinatePlane(ctx, 0, center, canvasSize, center)
     drawAxeOnCoordinatePlane(ctx, center, canvasSize, center, 0)
-    drawAxisLabels(ctx, r);
+    drawAxisLabels(ctx, r)
 }
 
 function convertIntoCanvasCoordinates(x, y) {
@@ -90,7 +90,7 @@ function convertIntoCanvasCoordinates(x, y) {
 
 function drawShapes(ctx, r) {
     const rForDrawing = r || 1
-    ctx.lineWidth = lineWidth;
+    ctx.lineWidth = lineWidth
     ctx.strokeStyle = 'rgba(133, 116, 102, 0.3)'
     ctx.fillStyle = 'rgba(227, 237, 250, 0.6)'
 
@@ -125,7 +125,6 @@ function drawShapes(ctx, r) {
 }
 
 function drawPointOnCoordinatePlane(ctx, x, y, wasThereHit) {
-    let radius
     if (wasThereHit) {
         ctx.fillStyle = '#C0E6B1'
     } else {
@@ -133,7 +132,7 @@ function drawPointOnCoordinatePlane(ctx, x, y, wasThereHit) {
     }
     ctx.beginPath()
     let [newX, newY] = convertIntoCanvasCoordinates(x, y)
-    ctx.arc(newX, newY, 3, 0, 2*Math.PI)
+    ctx.arc(newX, newY, 4, 0, 2*Math.PI)
     ctx.closePath()
     ctx.fill()
 }

@@ -160,19 +160,18 @@ body {
     background-color: #E3EDFA;
 }
 
-#main_canvas canvas {
-    background-color: #FAF0E3;
+#main_canvas {
     width: 400px;
     height: 400px;
+    text-align: center;
+}
+
+#main_canvas canvas {
+    background-color: #FAF0E3;
     border: 2px solid #857466;
     border-radius: 14px;
     box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
     margin-top: 70px;
-}
-
-#main_canvas {
-    width: 35%;
-    text-align: center;
 }
 
 .error {
@@ -209,19 +208,6 @@ body {
     100% {
         opacity: 0;
     }
-}
-
-th {
-    background: #E3EDFA;
-    padding: 9px 8px;
-    font-weight: 600;
-    border: 2px solid #857466;
-}
-
-td {
-    background: #FAF0E3;
-    padding: 7px 6px;
-    border: 2px solid #857466;
 }
 
 .status {
@@ -269,12 +255,52 @@ table {
     width: 100%;
     max-width: 700px;
     margin: 0;
-    border-collapse: collapse;
     font-size: 16px;
     text-align: center;
-    border: 2px solid #857466;
     border-radius: 9px;
+    border-spacing: 0;
     overflow: hidden;
+}
+
+th, td {
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    border-color: #857466;
+    padding: 10px 20px;
+}
+
+th {
+    background: #E3EDFA;
+    font-weight: 600;
+}
+
+td {
+    background: #FAF0E3;
+}
+
+th:first-child {
+    border-top-left-radius: 10px;
+}
+
+th:last-child {
+    border-top-right-radius: 10px;
+    border-right: none;
+}
+
+tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+
+tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr td:last-child {
+    border-right: none;
 }
 
 #navigation {

@@ -19,8 +19,9 @@ export class CanvasHandler {
             return
         }
         const rect = this.canvas.getBoundingClientRect()
-        const x_px = event.clientX - rect.left
-        const y_px = event.clientY - rect.top
+        const offset = 2
+        const x_px = event.clientX - rect.left - offset
+        const y_px = event.clientY - rect.top - offset
         const realX = (x_px - this.center) / this.scale
         const realY = -((y_px - this.center) / this.scale)
         const xFloat = parseFloat(realX.toFixed(4))
